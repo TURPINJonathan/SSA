@@ -5,3 +5,13 @@ api_platform:
         stateless: true
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
+    formats:
+        json: ['application/json']
+        jsonld: ['application/ld+json']
+    docs_formats:
+        jsonld: ['application/ld+json']
+        json: ['application/json']
+        
+    patch_formats:
+        json: ['application/json']
+        merge: ['application/merge-patch+json']
