@@ -62,9 +62,19 @@ class Agent
 	#[ORM\ManyToMany(targetEntity: Mission::class, mappedBy: 'agents')]
 	private Collection $currentMission;
 
+	#[ORM\ManyToOne(targetEntity: Agent::class, inversedBy: 'mentees')]
+	private ?Agent $mentor = null;
+
+	/**
+	 * @var Collection<int, Agent>
+	 */
+	#[ORM\OneToMany(targetEntity: Agent::class, mappedBy: 'mentor')]
+	private Collection $mentees;
+
 	public function __construct()
 	{
 		$this->currentMission = new ArrayCollection();
+		$this->mentees = new ArrayCollection();
 	}
 
 	public function getId(): ?int
@@ -166,6 +176,48 @@ class Agent
 	{
 		if ($this->currentMission->removeElement($currentMission)) {
 			$currentMission->removeAgent($this);
+		}
+
+		return $this;
+	}
+
+	public function getMentor(): ?Agent
+	{
+		return $this->mentor;
+	}
+
+	public function setMentor(?Agent $mentor): static
+	{
+		$this->mentor = $mentor;
+
+		return $this;
+	}
+
+	/**
+	 * @return Collection<int, Agent>
+	 */
+	public function getMentees(): Collection
+	{
+		return $this->mentees;
+	}
+
+	public function addMentee(Agent $mentee): static
+	{
+		if (!$this->mentees->contains($mentee)) {
+			$this->mentees->add($mentee);
+			$mentee->setMentor($this);
+		}
+
+		return $this;
+	}
+
+	public function removeMentee(Agent $mentee): static
+	{
+		if ($this->mentees->removeElement($mentee)) {
+			// set the owning side to null (unless already changed)
+			if ($mentee->getMentor() === $this) {
+				$mentee->setMentor(null);
+			}
 		}
 
 		return $this;
