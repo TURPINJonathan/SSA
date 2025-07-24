@@ -17,7 +17,7 @@ Voici certains besoins fonctionnels à respecter :
 - [x] Le niveau de danger d'un Pays dépend du plus haut niveau de danger des Missions actives dans ce pays
 - [ ] Chaque Agent peut avoir un autre Agent comme mentor 
 - [ ] Chaque Agent peut infiltrer un seul pays à la fois
-- [ ] À la fin d'une Mission, un Résultat de mission est créé pour décrire son succès ou son échec
+- [x] À la fin d'une Mission, un Résultat de mission est créé pour décrire son succès ou son échec
 - [ ] Lorsque la liste des Agents est récupérée, les noms et prénoms ne sont pas renvoyés 
 
 Pour mieux visualiser leurs opérations les interfaces suivantes sont demandées : 

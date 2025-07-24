@@ -6,7 +6,8 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Enum\DangerLevel;
 use App\Enum\MissionStatus;
 use App\Repository\MissionRepository;
-use App\Validator\Constraints\AgentsInfiltrationConstraint;
+use App\Validator\Constraints\Mission\MissionStatusResultConstraint;
+use App\Validator\Constraints\Agent\AgentsInfiltrationConstraint;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -16,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: MissionRepository::class)]
 #[ApiResource]
 #[AgentsInfiltrationConstraint]
+#[MissionStatusResultConstraint]
 class Mission
 {
 	#[ORM\Id]
