@@ -51,6 +51,9 @@ class Agent
 	#[Assert\Type(type: User::class)]
 	private ?User $user = null;
 
+	#[ORM\ManyToOne(targetEntity: Country::class, inversedBy: 'agentsInfiltrated')]
+	private ?Country $countryInfiltrated = null;
+
 	public function getId(): ?int
 	{
 		return $this->id;
@@ -112,6 +115,18 @@ class Agent
 	public function setUser(?User $user): static
 	{
 		$this->user = $user;
+
+		return $this;
+	}
+
+	public function getCountryInfiltrated(): ?Country
+	{
+		return $this->countryInfiltrated;
+	}
+
+	public function setCountryInfiltrated(?Country $countryInfiltrated): static
+	{
+		$this->countryInfiltrated = $countryInfiltrated;
 
 		return $this;
 	}
