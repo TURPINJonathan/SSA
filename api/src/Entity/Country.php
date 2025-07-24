@@ -168,4 +168,36 @@ class Country
 
 		return $this;
 	}
+
+	public function getActiveMissions(): Collection
+	{
+		return $this->missions->filter(fn(Mission $mission) => $mission->isActive());
+	}
+
+	public function calculateDangerLevel(): DangerLevel
+	{
+		$activeMissions = $this->getActiveMissions();
+
+		if ($activeMissions->isEmpty()) {
+			return DangerLevel::LOW;
+		}
+
+		$dangerLevels = [];
+		foreach ($activeMissions as $mission) {
+			$dangerLevels[] = $mission->getDanger();
+		}
+
+		return DangerLevel::getHighest($dangerLevels);
+	}
+
+	public function updateDangerLevel(): self
+	{
+		$this->danger = $this->calculateDangerLevel();
+		return $this;
+	}
+
+	public function getCalculatedDangerLevel(): DangerLevel
+	{
+		return $this->calculateDangerLevel();
+	}
 }

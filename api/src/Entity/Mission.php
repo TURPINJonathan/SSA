@@ -223,4 +223,17 @@ class Mission
 
 		return $this;
 	}
+
+	/**
+	 * A mission is considered active if:
+	 * - it has no status set (null)
+	 * - the start date is in the past or today
+	 * - the end date is either null or in the future (including today)
+	 */
+	public function isActive(): bool
+	{
+		return $this->status === null && (
+			$this->startDate <= new \DateTime() &&
+			($this->endDate === null || $this->endDate >= new \DateTime()));
+	}
 }
