@@ -1,0 +1,1121 @@
+{
+  "info": {
+    "_postman_id": "6c2de6f9-f311-4243-8d5b-3d882148bdd8",
+    "name": "SSA",
+    "description": "The Super Secret Agency API to manage agent, mission, etc",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46551929"
+  },
+  "item": [
+    {
+      "name": "AGENT",
+      "item": [
+        {
+          "name": "CREATE WITH USER",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"codename\": \"Agent008\",\n    \"yearsOfExperience\": 10,\n    \"status\": \"Available\",\n    \"enrolementDate\": \"2024-01-15\",\n    \"user\": \"/api/users/1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/agents",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "agents"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CREATE WITH COUNTRY",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"codename\": \"Agent009\",\n    \"yearsOfExperience\": 8,\n    \"status\": \"On Mission\",\n    \"enrolementDate\": \"2022-03-20\",\n    \"countryInfiltrated\": \"/api/countries/1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/agents",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "agents"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CREATE WITH FULL PROPERTIES",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"codename\": \"Agent011\",\n    \"yearsOfExperience\": 25,\n    \"status\": \"On Mission\",\n    \"enrolementDate\": \"2015-09-12\",\n    \"user\": \"/api/users/2\",\n    \"countryInfiltrated\": \"/api/countries/1\",\n    \"currentMission\": [\n        \"/api/missions/3\"\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/agents",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "agents"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CREATE WITHOUT USER",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"codename\": \"Agent007\",\n    \"yearsOfExperience\": 15,\n    \"status\": \"Available\",\n    \"enrolementDate\": \"2020-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/agents",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "agents"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET ALL",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/agents",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "agents"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET BY ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/agents/1",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "agents", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PARTIAL UPDATE",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"Killed In Action\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/agents/3",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "agents", "3"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/agents/4",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "agents", "4"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "COUNTRY",
+      "item": [
+        {
+          "name": "CREATE",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"France\",\n    \"danger\": \"Low\",\n    \"numberOfAgents\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/countries",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "countries"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CREATE WITH CELL LEADER",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Allemagne\",\n    \"danger\": \"Medium\",\n    \"numberOfAgents\": 30,\n    \"cellLeader\": \"/api/agents/1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/countries",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "countries"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET ALL",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/countries",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "countries"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET BY ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/countries/1",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "countries", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PARTIAL UPDATE",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"danger\": \"Critical\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/countries/1",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "countries", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/countries/2",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "countries", "2"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "MISSION",
+      "item": [
+        {
+          "name": "CREATE WITH MINIMUM PROPERTIES",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Michael Jackson is not dead\",\n    \"danger\": \"Low\",\n    \"startDate\": \"2025-07-24\",\n    \"country\": \"/api/countries/1\",\n    \"agents\": [\n        \"/api/agents/1\",\n        \"/api/agents/2\"\n        ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/missions",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "missions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CREATE WITH DESCRIPTION AND OBJECTIVES",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Invasion extraterestre\",\n    \"danger\": \"Low\",\n    \"description\": \"Au cas où E.T. pointe le bout de son doigt.\",\n    \"objectives\": \"Faire de la prévention\",\n    \"startDate\": \"2025-07-24\",\n    \"country\": \"/api/countries/1\",\n    \"agents\": [\n        \"/api/agents/1\",\n        \"/api/agents/2\"\n        ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/missions",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "missions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CREATE WITH FULL PROPERTIES",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Operation NINJA\",\n    \"danger\": \"Critical\",\n    \"status\": \"Failure\",\n    \"description\": \"Aider le commissaire Gibert à protéger le ministre. Toute aide qu'il demande sera approuvée\",\n    \"objectives\": \"Protéger le ministre du Japon\",\n    \"startDate\": \"2025-08-01\",\n    \"endDate\": \"2025-08-15\",\n    \"country\": \"/api/countries/1\",\n    \"agents\": [\n        \"/api/agents/1\",\n        \"/api/agents/2\",\n        \"/api/agents/3\"\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/missions",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "missions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET ALL",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/missions",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "missions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET BY ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/missions/1",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "missions", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PARTIAL UPDATE",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"danger\": \"Critical\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/missions/1",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "missions", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/missions/2",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "missions", "2"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "MISSION RESULT",
+      "item": [
+        {
+          "name": "CREATE",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"summary\": \"Les agents ont peint MJ en marron pour donner le change et éviter qu'il ne puisse être reconnu.\",\n    \"status\": \"Success\",\n    \"mission\": \"/api/missions/3\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/mission_results",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "mission_results"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET ALL",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/mission_results",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "mission_results"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET BY ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/mission_results/1",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "mission_results", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PARTIAL UPDATE",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"Failure\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/mission_results/1",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "mission_results", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/mission_results/1",
+              "host": ["{{API_URL}}"],
+              "path": ["api", "mission_results", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "LOGIN",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "try {",
+              "    const responseJson = pm.response.json();",
+              "    ",
+              "    if (responseJson.token) {",
+              "        // Stocker le token",
+              "        pm.environment.set(\"token\", responseJson.token);",
+              "        ",
+              "        console.log(\"✅ Token successfully stored\");",
+              "        pm.test(\"Token stored\", function () {",
+              "            pm.expect(pm.environment.get(\"token\")).to.not.be.undefined;",
+              "        });",
+              "    } else {",
+              "        console.log(\"❌ No token in response\");",
+              "        pm.test(\"Token present in response\", function () {",
+              "            pm.expect(responseJson.token).to.not.be.undefined;",
+              "        });",
+              "    }",
+              "} catch (error) {",
+              "    console.log(\"❌ Error parsing response: \" + error);",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"james@bond.com\",\n  \"password\": \"jamesbond\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/auth",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["auth"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ]
+}

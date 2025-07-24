@@ -48,9 +48,16 @@ class Country
 	#[ORM\OneToMany(targetEntity: Agent::class, mappedBy: 'countryInfiltrated')]
 	private Collection $agentsInfiltrated;
 
+	/**
+	 * @var Collection<int, Mission>
+	 */
+	#[ORM\OneToMany(targetEntity: Mission::class, mappedBy: 'country')]
+	private Collection $missions;
+
 	public function __construct()
 	{
 		$this->agentsInfiltrated = new ArrayCollection();
+		$this->missions = new ArrayCollection();
 	}
 
 	public function getId(): ?int
@@ -126,6 +133,36 @@ class Country
 			// set the owning side to null (unless already changed)
 			if ($infiltrated->getCountryInfiltrated() === $this) {
 				$infiltrated->setCountryInfiltrated(null);
+			}
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @return Collection<int, Mission>
+	 */
+	public function getMissions(): Collection
+	{
+		return $this->missions;
+	}
+
+	public function addMission(Mission $mission): static
+	{
+		if (!$this->missions->contains($mission)) {
+			$this->missions->add($mission);
+			$mission->setCountry($this);
+		}
+
+		return $this;
+	}
+
+	public function removeMission(Mission $mission): static
+	{
+		if ($this->missions->removeElement($mission)) {
+			// set the owning side to null (unless already changed)
+			if ($mission->getCountry() === $this) {
+				$mission->setCountry(null);
 			}
 		}
 

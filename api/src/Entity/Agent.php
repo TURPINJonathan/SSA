@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use App\Enum\AgentStatus;
 use App\Repository\AgentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -53,6 +55,17 @@ class Agent
 
 	#[ORM\ManyToOne(targetEntity: Country::class, inversedBy: 'agentsInfiltrated')]
 	private ?Country $countryInfiltrated = null;
+
+	/**
+	 * @var Collection<int, Mission>
+	 */
+	#[ORM\ManyToMany(targetEntity: Mission::class, mappedBy: 'agents')]
+	private Collection $currentMission;
+
+	public function __construct()
+	{
+		$this->currentMission = new ArrayCollection();
+	}
 
 	public function getId(): ?int
 	{
@@ -127,6 +140,33 @@ class Agent
 	public function setCountryInfiltrated(?Country $countryInfiltrated): static
 	{
 		$this->countryInfiltrated = $countryInfiltrated;
+
+		return $this;
+	}
+
+	/**
+	 * @return Collection<int, Mission>
+	 */
+	public function getCurrentMission(): Collection
+	{
+		return $this->currentMission;
+	}
+
+	public function addCurrentMission(Mission $currentMission): static
+	{
+		if (!$this->currentMission->contains($currentMission)) {
+			$this->currentMission->add($currentMission);
+			$currentMission->addAgent($this);
+		}
+
+		return $this;
+	}
+
+	public function removeCurrentMission(Mission $currentMission): static
+	{
+		if ($this->currentMission->removeElement($currentMission)) {
+			$currentMission->removeAgent($this);
+		}
 
 		return $this;
 	}
