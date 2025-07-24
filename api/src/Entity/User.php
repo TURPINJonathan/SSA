@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @var list<string> The user roles
 	 */
 	#[ORM\Column]
-	#[Groups(['user:read', 'user:write'])]
+	#[Groups(['user:write'])]
 	private array $roles = [];
 
 	/**
@@ -47,11 +47,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	private ?string $password = null;
 
 	#[ORM\Column(length: 150)]
-	#[Groups(['user:read', 'user:write'])]
+	#[Groups(['user:write'])]
 	private ?string $firstName = null;
 
 	#[ORM\Column(length: 150)]
-	#[Groups(['user:read', 'user:write'])]
+	#[Groups(['user:write'])]
 	private ?string $lastName = null;
 
 	public function getId(): ?int
