@@ -46,7 +46,8 @@ echo "Choose your database type:"
 echo "1) MySQL/MariaDB"
 echo "2) PostgreSQL"
 echo "3) SQLite"
-read -p "Your choice (1-3): " db_choice
+read -p "Your choice (1-3) [1]: " db_choice
+db_choice=${db_choice:-1}
 
 case $db_choice in
     1)
@@ -172,11 +173,25 @@ else
 fi
 
 echo ""
-echo -e "${YELLOW}👤 Creating administrator user${NC}"
-read -p "Do you want to create an admin user now? (y/N): " create_admin
+echo -e "${YELLOW}👤 Creating an agent${NC}"
+read -p "Do you want to create an agent user now? (Y/n): " create_agent
 
-if [[ $create_admin =~ ^[Yy]$ ]]; then
-    php bin/console cr:ag
+if [[ $create_agent =~ ^[Nn]$ ]]; then
+	echo -e "${BLUE}💼 Skipping agent creation${NC}"
+else
+	php bin/console cr:ag
+
+	while true; do
+		echo ""
+		read -p "Do you want to create another agent? (y/N): " create_another
+		
+		if [[ $create_another =~ ^[Yy]$ ]]; then
+			php bin/console cr:ag
+		else
+			echo -e "${BLUE}💼 Agent creation completed${NC}"
+			break
+		fi
+	done
 fi
 
 echo -e "${YELLOW}🔒 Setting permissions...${NC}"
@@ -194,9 +209,15 @@ echo -e "   • Environment configuration (.env.local)"
 echo -e "   • JWT keys generated"
 echo -e "   • Database configured"
 echo -e "   • Migrations executed"
+echo -e "   • Agent user created (if selected)"
 echo ""
 echo -e "${BLUE}🚀 To start the server:${NC}"
 echo -e "   cd api && symfony server:start"
+echo ""
+echo -e "${BLUE}📮 Postman Collection:${NC}"
+echo -e "   • Import 'postman_collection.json' into Postman"
+echo -e "   • Use http://localhost:8000 as base URL"
+echo -e "   • Run LOGIN request first to authenticate"
 echo ""
 echo -e "${BLUE}📖 Useful URLs:${NC}"
 echo -e "   • API Documentation: http://localhost:8000/api"
