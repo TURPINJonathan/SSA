@@ -12,7 +12,7 @@ Pour vous aider dans votre mission nous vous conseillons d’utiliser notre Tech
 Voici certains besoins fonctionnels à respecter :
 - [ ] Lors de la mort d'un Agent, tous les Agents sont informés par Message
 - [X] Un Agent ne peut pas participer à une Mission s'il n'est pas infiltré dans le Pays de cette dernière 
-- [ ] Lors du début d'une Mission, un Message est envoyé à tous les Agents de ce Pays sauf ceux qui participent à cette mission
+- [x] Lors du début d'une Mission, un Message est envoyé à tous les Agents de ce Pays sauf ceux qui participent à cette mission
 - [ ] Lors de la mort d'un Agent tous ses Messages sont supprimés
 - [x] Le niveau de danger d'un Pays dépend du plus haut niveau de danger des Missions actives dans ce pays
 - [x] Chaque Agent peut avoir un autre Agent comme mentor 

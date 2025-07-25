@@ -22,7 +22,7 @@ final class Version20250723180447 extends AbstractMigration
 		// this up() migration is auto-generated, please modify it to your needs
 		$this->addSql('CREATE TABLE agent (
 					id INT AUTO_INCREMENT NOT NULL,
-					user_id INT DEFAULT NULL,
+					user_id INT NOT NULL,
 					codename VARCHAR(255) NOT NULL,
 					years_of_experience INT NOT NULL,
 					status VARCHAR(255) DEFAULT \'Available\' NOT NULL,

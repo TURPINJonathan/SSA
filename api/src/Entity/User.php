@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -53,6 +55,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	#[ORM\Column(length: 150)]
 	#[Groups(['user:write'])]
 	private ?string $lastName = null;
+
+	/**
+	 * @var Collection<int, Message>
+	 */
+	#[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'sendBy')]
+	private Collection $messages;
+
+	/**
+	 * @var Collection<int, Message>
+	 */
+	#[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'recipient')]
+	private Collection $receivedMessages;
+
+	public function __construct()
+	{
+		$this->messages = new ArrayCollection();
+		$this->receivedMessages = new ArrayCollection();
+	}
 
 	public function getId(): ?int
 	{
@@ -155,6 +175,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	public function setLastName(string $lastName): static
 	{
 		$this->lastName = $lastName;
+
+		return $this;
+	}
+
+	/**
+	 * @return Collection<int, Message>
+	 */
+	public function getMessages(): Collection
+	{
+		return $this->messages;
+	}
+
+	public function addMessage(Message $message): static
+	{
+		if (!$this->messages->contains($message)) {
+			$this->messages->add($message);
+			$message->setSendBy($this);
+		}
+
+		return $this;
+	}
+
+	public function removeMessage(Message $message): static
+	{
+		if ($this->messages->removeElement($message)) {
+			// set the owning side to null (unless already changed)
+			if ($message->getSendBy() === $this) {
+				$message->setSendBy(null);
+			}
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @return Collection<int, Message>
+	 */
+	public function getReceivedMessages(): Collection
+	{
+		return $this->receivedMessages;
+	}
+
+	public function addReceivedMessage(Message $receivedMessage): static
+	{
+		if (!$this->receivedMessages->contains($receivedMessage)) {
+			$this->receivedMessages->add($receivedMessage);
+			$receivedMessage->setRecipient($this);
+		}
+
+		return $this;
+	}
+
+	public function removeReceivedMessage(Message $receivedMessage): static
+	{
+		if ($this->receivedMessages->removeElement($receivedMessage)) {
+			// set the owning side to null (unless already changed)
+			if ($receivedMessage->getRecipient() === $this) {
+				$receivedMessage->setRecipient(null);
+			}
+		}
 
 		return $this;
 	}

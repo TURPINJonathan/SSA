@@ -3,6 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 use App\Enum\DangerLevel;
 use App\Repository\CountryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -13,7 +18,30 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CountryRepository::class)]
-#[ApiResource]
+#[ApiResource(
+	operations: [
+		new GetCollection(
+			security: "is_granted('ROLE_ADMIN')",
+			securityMessage: 'Only admins can view the list of agents.'
+		),
+		new Get(
+			security: "is_granted('ROLE_AGENT') or is_granted('ROLE_ADMIN')",
+			securityMessage: 'Only admins can view agent details.'
+		),
+		new Post(
+			security: "is_granted('ROLE_ADMIN')",
+			securityMessage: 'Only admins can create agents.'
+		),
+		new Patch(
+			security: "is_granted('ROLE_AGENT') or is_granted('ROLE_ADMIN')",
+			securityMessage: 'Only agents or admins can update agent details.'
+		),
+		new Delete(
+			security: "is_granted('ROLE_ADMIN')",
+			securityMessage: 'Only admins can delete agents.'
+		)
+	]
+)]
 #[UniqueEntity(fields: ['name'], message: 'This country name already exists.')]
 class Country
 {

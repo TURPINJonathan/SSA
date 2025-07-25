@@ -3,6 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use App\Enum\AgentStatus;
 use App\Repository\AgentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,7 +17,30 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AgentRepository::class)]
-#[ApiResource]
+#[ApiResource(
+	operations: [
+		new GetCollection(
+			security: "is_granted('ROLE_ADMIN')",
+			securityMessage: 'Only admins can view the list of agents.'
+		),
+		new Get(
+			security: "is_granted('ROLE_AGENT') or is_granted('ROLE_ADMIN')",
+			securityMessage: 'Only admins can view agent details.'
+		),
+		new Post(
+			security: "is_granted('ROLE_ADMIN')",
+			securityMessage: 'Only admins can create agents.'
+		),
+		new Patch(
+			security: "is_granted('ROLE_AGENT') or is_granted('ROLE_ADMIN')",
+			securityMessage: 'Only agents or admins can update agent details.'
+		),
+		new Delete(
+			security: "is_granted('ROLE_ADMIN')",
+			securityMessage: 'Only admins can delete agents.'
+		)
+	]
+)]
 class Agent
 {
 	#[ORM\Id]
@@ -49,7 +77,7 @@ class Agent
 	private ?\DateTime $enrolementDate = null;
 
 	#[ORM\OneToOne(targetEntity: User::class)]
-	#[ORM\JoinColumn(nullable: true, unique: true)]
+	#[ORM\JoinColumn(nullable: false, unique: true)]
 	#[Assert\Type(type: User::class)]
 	private ?User $user = null;
 
