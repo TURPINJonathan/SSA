@@ -1,0 +1,56 @@
+@import "./ssa-keyframes.scss";
+
+@mixin ssa-glow($color: $ssa-accent, $intensity: 0.3) {
+  box-shadow: 0 0 20px rgba($color, $intensity);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 0 30px rgba($color, $intensity + 0.2);
+  }
+}
+
+@mixin ssa-pulse($color: $ssa-accent, $duration: 2s) {
+  animation: ssa-pulse #{$duration} ease-in-out infinite;
+  
+}
+
+@mixin ssa-scanner($color: white, $duration: 3s) {
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba($color, 0.6), 
+      transparent
+    );
+    animation: ssa-scanner #{$duration} linear infinite;
+  }
+  
+}
+
+@mixin ssa-text-glow($color: $ssa-accent) {
+  color: $color;
+  text-shadow: 0 0 10px rgba($color, 0.5);
+  font-family: $ssa-font-mono;
+}
+
+@mixin ssa-card($transparent: false) {
+  @if $transparent {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  } @else {
+    background: rgba($ssa-dark, 0.95);
+    border: 1px solid rgba($ssa-accent, 0.5);
+    border-radius: $ssa-border-radius-lg;
+    backdrop-filter: blur(10px);
+    @include ssa-glow($ssa-accent);
+  }
+}

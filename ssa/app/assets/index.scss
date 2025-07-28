@@ -1,0 +1,102 @@
+@import './scss/ssa-variables.scss';
+@import './scss/ssa-mixins.scss';
+@import './scss/ssa-keyframes.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $ssa-font-sans;
+  background: #0a0a0a;
+  color: white;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba($ssa-dark, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba($ssa-accent, 0.5);
+  border-radius: 4px;
+  
+  &:hover {
+    background: rgba($ssa-accent, 0.7);
+  }
+}
+
+.q-card {
+  &.ssa-themed {
+    background: rgba($ssa-dark, 0.95) !important;
+    border: 1px solid rgba($ssa-accent, 0.5) !important;
+    border-radius: 8px !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px rgba($ssa-accent, 0.3) !important;
+  }
+}
+
+.ssa-interactive {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba($ssa-accent, 0.2);
+  }
+}
+
+.ssa-glow {
+  box-shadow: 0 0 20px rgba($ssa-accent, 0.3);
+}
+
+.ssa-text-glow {
+  text-shadow: 0 0 10px currentColor;
+}
+
+.ssa-border-glow {
+  border: 1px solid rgba($ssa-accent, 0.5);
+  box-shadow: 0 0 15px rgba($ssa-accent, 0.2);
+}
+
+.ssa-fade-in {
+  animation: ssa-fade-in 0.6s ease-out;
+}
+
+.ssa-mono {
+  font-family: $ssa-font-mono;
+}
+
+.ssa-sans {
+  font-family: $ssa-font-sans;
+}
+
+.ssa-text-accent {
+  @include ssa-text-glow($ssa-accent);
+}
+
+.ssa-text-secondary {
+  @include ssa-text-glow($ssa-secondary);
+}
+
+.ssa-text-success {
+  @include ssa-text-glow($ssa-success);
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .ssa-hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .ssa-hide-desktop {
+    display: none !important;
+  }
+}

@@ -1,0 +1,53 @@
+$ssa-primary: #0D47A1;
+$ssa-dark: #0a0a0a;
+$ssa-accent: #00f5ff;
+$ssa-secondary: #ff00ff;
+$ssa-success: #00ff41;
+$ssa-warning: #FF9800;
+$ssa-warning-dark: #F57C00;
+$ssa-critical: #AD1457;
+$ssa-danger: #F44336;
+$ssa-danger-dark: #B71C1C;
+$ssa-success-light: #4CAF50;
+
+$ssa-font-mono: 'JetBrains Mono', 'Courier New', monospace;
+$ssa-font-sans: 'Inter', 'Roboto', sans-serif;
+
+$ssa-spacing-xs: 4px;
+$ssa-spacing-sm: 8px;
+$ssa-spacing-md: 16px;
+$ssa-spacing-lg: 24px;
+$ssa-spacing-xl: 32px;
+
+$ssa-border-radius-sm: 4px;
+$ssa-border-radius-md: 6px;
+$ssa-border-radius-lg: 8px;
+$ssa-border-radius-xl: 12px;
+$ssa-border-radius-xxl: 16px;
+
+$ssa-classification-levels: (
+  'top-secret': ($ssa-secondary, $ssa-accent, $ssa-accent),
+  'secret': ($ssa-dark, $ssa-primary, $ssa-primary),
+  'confidential': ($ssa-danger-dark, $ssa-danger, $ssa-danger),
+  'public': ($ssa-success, $ssa-success-light, $ssa-success)
+);
+
+$ssa-error-types: (
+  'error': ($ssa-danger-dark, $ssa-danger, $ssa-danger),
+  'warning': ($ssa-warning-dark, $ssa-warning, $ssa-warning),
+  'critical': ($ssa-critical, $ssa-secondary, $ssa-secondary)
+);
+
+$ssa-status-types: (
+  'active': $ssa-success,
+  'warning': $ssa-warning,
+  'error': $ssa-danger,
+  'success': $ssa-success,
+  'info': $ssa-accent
+);
+
+$button-variants: (
+	'primary': ($ssa-accent, $ssa-secondary),
+	'secondary': ($ssa-secondary, $ssa-accent),
+	'success': ($ssa-success, $ssa-accent)
+);
